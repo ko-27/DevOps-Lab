@@ -1,0 +1,24 @@
+---
+- name: Install and configure Nginx web server
+  hosts: webserver
+  become: true
+
+  tasks:
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy custom web page
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
