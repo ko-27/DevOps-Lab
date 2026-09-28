@@ -1,0 +1,14 @@
+---
+- name: Start Docker Container Using Ansible
+  hosts: local
+  become: false
+
+  tasks:
+
+    - name: Start Nginx container
+      community.docker.docker_container:
+        name: ansible-nginx
+        image: nginx:latest
+        state: started
+        ports:
+          - "8082:80"

@@ -1,0 +1,11 @@
+---
+- name: Remove Docker Container Using Ansible
+  hosts: local
+  become: false
+
+  tasks:
+
+    - name: Remove Nginx container
+      community.docker.docker_container:
+        name: ansible-nginx
+        state: absent
